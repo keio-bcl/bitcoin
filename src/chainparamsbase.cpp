@@ -14,12 +14,15 @@
 const std::string CBaseChainParams::MAIN = "main";
 const std::string CBaseChainParams::TESTNET = "test";
 const std::string CBaseChainParams::REGTEST = "regtest";
+const std::string CBaseChainParams::BSAFENET = "bsafenet";
 
 void SetupChainParamsBaseOptions()
 {
     gArgs.AddArg("-regtest", "Enter regression test mode, which uses a special chain in which blocks can be solved instantly. "
                                    "This is intended for regression testing tools and app development.", true, OptionsCategory::CHAINPARAMS);
     gArgs.AddArg("-testnet", "Use the test chain", false, OptionsCategory::CHAINPARAMS);
+
+    gArgs.AddArg("-bsafenet", "Run on the BSafe.Network (bsafenet) chain", false, OptionsCategory::CHAINPARAMS);
 }
 
 static std::unique_ptr<CBaseChainParams> globalChainBaseParams;
@@ -38,6 +41,8 @@ std::unique_ptr<CBaseChainParams> CreateBaseChainParams(const std::string& chain
         return MakeUnique<CBaseChainParams>("testnet3", 18332);
     else if (chain == CBaseChainParams::REGTEST)
         return MakeUnique<CBaseChainParams>("regtest", 18443);
+    else if (chain == CBaseChainParams::BSAFENET)
+        return MakeUnique<CBaseChainParams>("bsafenet", 34822);
     else
         throw std::runtime_error(strprintf("%s: Unknown chain %s.", __func__, chain));
 }

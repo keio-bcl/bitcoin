@@ -275,6 +275,90 @@ public:
 };
 
 /**
+ * BSafe
+ */
+class CBSafeNetParams : public CChainParams {
+public:
+    CBSafeNetParams() {
+        strNetworkID = "bsafenet";
+        consensus.nSubsidyHalvingInterval = 210000;
+
+        consensus.nSubsidyHalvingInterval = 150;
+        consensus.BIP16Exception = uint256(); // always enforce P2SH BIP16 on regtest
+        consensus.BIP34Height = 0; // always enforce BIP34
+        consensus.BIP34Hash = uint256();
+        consensus.BIP65Height = 0; // always enforce BIP65
+        consensus.BIP66Height = 0; // always enforce BIP65
+        consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // same as regtest now
+
+        consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
+        consensus.nPowTargetSpacing = 10 * 60;
+        consensus.fPowAllowMinDifficultyBlocks = true;
+        consensus.fPowNoRetargeting = false;
+        consensus.nRuleChangeActivationThreshold = 108; // 75% for testchains -- BSafeMod: 75% of nMinerConfirmationWindow
+        consensus.nMinerConfirmationWindow = 144; // nPowTargetTimespan / nPowTargetSpacing -- BafeMod: aster than normal for segnet (144 instead of 2016)
+
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 0;
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
+        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
+        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE;
+        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
+
+        // The best chain should have at least this much work.
+        consensus.nMinimumChainWork = uint256();
+
+        // By default assume that the signatures in ancestors of this block are valid.
+        consensus.defaultAssumeValid = uint256();
+
+         pchMessageStart[0] = 0xbe; // -- BSafeMod
+         pchMessageStart[1] = 0x46; // -- BSafeMod
+         pchMessageStart[2] = 0x9e; // -- BSafeMod
+         pchMessageStart[3] = 0xc5; // -- BSafeMod
+         nDefaultPort = 34821; // -- BSafeMod
+         nPruneAfterHeight = 1000;
+
+        genesis = CreateGenesisBlock(1464966958, 0, 0x1e01ffff, 1, 50 * COIN); // -- BSafeMod
+        consensus.hashGenesisBlock = genesis.GetHash();
+
+        vFixedSeeds.clear();
+        vSeeds.clear();
+        // nodes with support for servicebits filtering should be at the top
+        // vSeeds.emplace_back("blockchain.kmd.keio.ac.jp"); // -- BSafeMod: not yet
+
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
+        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
+        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
+
+        bech32_hrp = "tb";
+
+        vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_bsafe, pnSeed6_bsafe + ARRAYLEN(pnSeed6_bsafe));
+
+        fDefaultConsistencyChecks = false;
+        fRequireStandard = false;
+        fMineBlocksOnDemand = false;
+
+        checkpointData = {
+            {
+                // should place genesis block check here
+            }
+        };
+
+        chainTxData = ChainTxData{
+            0,
+            0,
+            0
+        };
+
+    }
+};
+
+/**
  * Regression test
  */
 class CRegTestParams : public CChainParams {
@@ -367,6 +451,8 @@ std::unique_ptr<CChainParams> CreateChainParams(const std::string& chain)
         return std::unique_ptr<CChainParams>(new CMainParams());
     else if (chain == CBaseChainParams::TESTNET)
         return std::unique_ptr<CChainParams>(new CTestNetParams());
+    else if (chain == CBaseChainParams::BSAFENET)
+        return std::unique_ptr<CChainParams>(new CBSafeNetParams());
     else if (chain == CBaseChainParams::REGTEST)
         return std::unique_ptr<CChainParams>(new CRegTestParams());
     throw std::runtime_error(strprintf("%s: Unknown chain %s.", __func__, chain));
