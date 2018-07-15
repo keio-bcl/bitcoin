@@ -963,7 +963,10 @@ std::string ArgsManager::GetChainName() const
 {
     bool fRegTest = ArgsManagerHelper::GetNetBoolArg(*this, "-regtest");
     bool fTestNet = ArgsManagerHelper::GetNetBoolArg(*this, "-testnet");
+    bool fBSafeNet = ArgsManagerHelper::GetNetBoolArg(*this, "-bsafenet");
 
+    if (fBSafeNet)
+        return CBaseChainParams::BSAFENET;
     if (fTestNet && fRegTest)
         throw std::runtime_error("Invalid combination of -regtest and -testnet.");
     if (fRegTest)
