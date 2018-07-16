@@ -327,7 +327,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        // vSeeds.emplace_back("blockchain.kmd.keio.ac.jp"); // -- BSafeMod: not yet
+        vSeeds.emplace_back("bitcoin.bsafe.network");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
