@@ -1,5 +1,5 @@
-Bitcoin Core with BSafe.Network Modifcations
-============================================
+Bitcoin Core with BSafe.Network Modifications
+=============================================
 
 This branch of Bitcoin core includes support for creating
 [BSafe.Network](https://bsafe.network/)'s Bitcoin blockchain
