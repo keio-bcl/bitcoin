@@ -9,6 +9,18 @@ activities on the BSafe.Network.
 
 This patch is currently maintained by Shigeya Suzuki <<shigeya@wide.ad.jp>>
 
+Request for node installations & upgrades
+-----------------------------------------
+
+BSafe Network continues to further expand its research network and community activities. As such we would like to invite your participation in this milestone install & upgrade of BSafe node software.
+
+At this moment, we call for two types of nodes, with different testing durations:
+
+Node type 1 - Specific to Layer 2 competition (up to six months)
+Node type 2 - For Layer 2 competition as well as other adjacent testing purposes (up to one year) 
+Note: For the long-term experiment, we're currently designing an experimental system which will be capable of multi-blockchain/multi-software testing. This summer we'll reach out again for your participation, though as with all of our efforts we welcome your input at any time.
+
+We urgently request your support with type 1 nodes.  Please respond if you can join us to expand our Layer 1 testing network (on the live Bitcoin network). 
 
 Repository Location
 -------------------
@@ -23,6 +35,22 @@ branch. Please clone and check out the branch accordingly, like this:
     cd bitcoin
     git checkout bsafe-deploy
 
+Baseline requirements
+---------------------
+
+Either virtual machine or bare-metal machines are fine. 
+
+Recommended: 
+
+- Processor 1 vCPU, dedicated better
+- Memory: 1GB physical. You need 2GB virtual space when compiling it.
+- Disk: 20GB  very minimum. 50GB recommended.
+- Traffic: should be moderate, we assume it will be very similar to minimal web site traffic.
+- Location: The machine should be located close to you, at least, in your country.
+
+If you have any question regarding requirements, please ask. We currently run it on Linux, using Debian version 9.
+
+Due to the nature of the experiment, we strongly suggest having one dedicated Virtual Machine for the purpose. 
 
 Installation
 ------------
