@@ -100,4 +100,4 @@ Configure, build and install:
     ./autogen.sh
     ./configure --with-gui=no --with-incompatible-bdb --disable-tests   --disable-gui-tests  --disable-bench
     make
-    make install
+    sudo make install
