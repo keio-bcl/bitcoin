@@ -29,7 +29,7 @@ Installation
 
 Please refer to [doc directory](doc) for general build
 directions. While the maintainer believes it does not have any
-platform dependency, we only tested on Debian 9 and MacOS X Mojave.
+platform dependency, we only tested on Debian 9, Ubuntu 18.04 LTS, and MacOS X Mojave.
 Please read [doc/build-unix.md](doc/build-unix.md) or
 [doc/build-osx.md](doc/build-osx.md) on dependencies for build. There
 is no specific build requirement for BSafe.Network patch.  If you
@@ -43,7 +43,7 @@ At our site, we're building with the following steps:
     make
     make install # optional
 
-We provide Debian 9 specific build instructure in the below for your convinience.
+We provide Debian 9 and Ubuntu 18.04 LTS specific build steps in the below for your convinience.
 
 
 Running the daemon
@@ -64,16 +64,16 @@ Core's releases, we recommend the following steps:
     git reset --hard remotes/origin/bsafe-deploy
     # follow the same build steps
 
-Building on Debian 9
-====================
+Building on Debian 9 and Ubuntu 18.04 LTS
+=========================================
 
-Following is an example of steps to build on Debian 9 (Debian 9.9 to be specific).
+Following is an example of steps work for Debian 9 (Debian 9.9 to be specific) and Ubuntu 18.04 LTS.
 
-Setup Debian
-------------
- You can work on the build via Desktop or remote login via SSH, but for maintenance, we recommend to use remote login based maintenance.
+Setup Debian or Ubuntu
+----------------------
+You can work on the build via Desktop or remote login via SSH, but for maintenance, we recommend to use remote login based maintenance. We also recommend to build the binary using regular user account.
 
-Also, following steps assumes you have installed `sudo` command, which default minimum install don't install. You can install it, via root login session:
+For Debian, you need to setup `sudo` command, which default minimum installation don't install. You can install it and setup, via root login session:
 
     apt-get install -y sudo
     addgroup USERNAME sudo # replace USERNAME with your login name
