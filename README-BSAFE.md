@@ -98,6 +98,6 @@ Configure, build and install:
 
     bash
     ./autogen.sh
-    ./configure --with-gui=no --with-incompatible-bdb --disable-tests   --disable-gui-tests  --disable-bench
+    ./configure --with-gui=no --with-incompatible-bdb
     make
     sudo make install
